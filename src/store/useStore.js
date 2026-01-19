@@ -15,6 +15,7 @@ const useStore = create(
             },
             transactions: [],
             isSidebarOpen: false,
+            isTransactionModalOpen: false,
 
             updateUser: (user) =>
                 set((state) => ({ user: { ...state.user, ...user } })),
@@ -40,6 +41,8 @@ const useStore = create(
                     ),
                 })),
             clearTransactions: () => set({ transactions: [] }),
+            setTransactionModalOpen: (open) =>
+                set({ isTransactionModalOpen: open }),
         }),
         {
             name: "expense-tracker-storage",

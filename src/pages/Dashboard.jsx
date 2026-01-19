@@ -1,9 +1,9 @@
 import { Wallet, ArrowUpCircle, ArrowDownCircle } from "lucide-react";
 import StatsCard from "../components/StatsCard";
 import TransactionList from "../components/TransactionList";
-import ExpenseForm from "../components/ExpenseForm";
 import SavingsGoal from "../components/SavingsGoal";
 import ActivityChart from "../components/ActivityChart";
+import FinancialHealth from "../components/FinancialHealth";
 
 export default function Dashboard() {
     return (
@@ -40,8 +40,8 @@ export default function Dashboard() {
                     <TransactionList />
                 </div>
                 <div className="space-y-8">
-                    <ExpenseForm />
                     <SavingsGoal />
+                    <FinancialHealth />
                 </div>
             </div>
         </div>

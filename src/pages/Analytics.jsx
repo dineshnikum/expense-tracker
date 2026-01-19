@@ -5,41 +5,41 @@ export default function Analytics() {
     return (
         <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center gap-4 transition-colors">
+                    <div className="p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl">
                         <TrendingUp size={24} />
                     </div>
                     <div>
-                        <p className="text-sm text-slate-500 font-medium">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
                             Savings Rate
                         </p>
-                        <h3 className="text-xl font-bold text-slate-900">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                             24%
                         </h3>
                     </div>
                 </div>
-                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center gap-4 transition-colors">
+                    <div className="p-3 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-xl">
                         <PieChart size={24} />
                     </div>
                     <div>
-                        <p className="text-sm text-slate-500 font-medium">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
                             Budget Used
                         </p>
-                        <h3 className="text-xl font-bold text-slate-900">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                             $3,200 / $5k
                         </h3>
                     </div>
                 </div>
-                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-                    <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm flex items-center gap-4 transition-colors">
+                    <div className="p-3 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-xl">
                         <Target size={24} />
                     </div>
                     <div>
-                        <p className="text-sm text-slate-500 font-medium">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
                             Daily Average
                         </p>
-                        <h3 className="text-xl font-bold text-slate-900">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                             $42.50
                         </h3>
                     </div>
@@ -50,8 +50,8 @@ export default function Analytics() {
                 <div className="lg:col-span-2">
                     <ActivityChart />
                 </div>
-                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                    <h3 className="font-bold text-slate-900 mb-6">
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm transition-colors">
+                    <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-6">
                         Top Categories
                     </h3>
                     <div className="space-y-6">
@@ -71,14 +71,14 @@ export default function Analytics() {
                         ].map((cat) => (
                             <div key={cat.name} className="space-y-2">
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-slate-600 font-medium">
+                                    <span className="text-slate-600 dark:text-slate-400 font-medium">
                                         {cat.name}
                                     </span>
-                                    <span className="text-slate-900 font-bold">
+                                    <span className="text-slate-900 dark:text-slate-100 font-bold">
                                         {cat.value}%
                                     </span>
                                 </div>
-                                <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                                <div className="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                                     <div
                                         className={`h-full ${cat.color} rounded-full`}
                                         style={{ width: `${cat.value}%` }}

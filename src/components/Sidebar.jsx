@@ -30,19 +30,19 @@ export default function Sidebar() {
             )}
 
             <aside
-                className={`w-64 bg-white border-r border-slate-200 flex flex-col h-screen fixed left-0 top-0 transition-transform duration-300 z-50 ${
+                className={`w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen fixed left-0 top-0 transition-all duration-300 z-50 ${
                     isSidebarOpen
                         ? "translate-x-0"
                         : "-translate-x-full md:translate-x-0"
                 }`}
             >
-                <div className="p-6 border-b border-slate-100 flex items-center justify-between">
+                <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
                     <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                         FinTrack
                     </h1>
                     <button
                         onClick={() => setSidebarOpen(false)}
-                        className="md:hidden text-slate-400 hover:text-slate-600"
+                        className="md:hidden text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
                     >
                         <X size={20} />
                     </button>
@@ -57,8 +57,8 @@ export default function Sidebar() {
                             className={({ isActive }) =>
                                 `w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                                     isActive
-                                        ? "bg-blue-50 text-blue-600"
-                                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                        ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
                                 }`
                             }
                         >
@@ -68,8 +68,8 @@ export default function Sidebar() {
                                         size={20}
                                         className={`${
                                             isActive
-                                                ? "text-blue-600"
-                                                : "text-slate-400 group-hover:text-slate-600"
+                                                ? "text-blue-600 dark:text-blue-400"
+                                                : "text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300"
                                         }`}
                                     />
                                     <span className="font-medium">
@@ -81,7 +81,7 @@ export default function Sidebar() {
                     ))}
                 </nav>
 
-                <div className="p-4 border-t border-slate-100">
+                <div className="p-4 border-t border-slate-100 dark:border-slate-800">
                     <button
                         onClick={() => {
                             if (
@@ -92,7 +92,7 @@ export default function Sidebar() {
                                 useStore.getState().clearTransactions();
                             }
                         }}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-colors"
                     >
                         <LogOut size={20} />
                         <span className="font-medium">Sign Out</span>

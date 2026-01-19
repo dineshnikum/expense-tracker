@@ -1,6 +1,6 @@
 export default function SavingsGoal() {
     return (
-        <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-6 text-white shadow-xl shadow-blue-200">
+        <div className="bg-gradient-to-br from-indigo-600 to-blue-700 dark:from-indigo-600/40 dark:to-blue-700/40 rounded-2xl p-6 text-white shadow-xl shadow-blue-200 dark:shadow-none transition-colors">
             <h3 className="font-bold text-lg mb-2">Savings Goal</h3>
             <p className="text-blue-100 text-sm mb-4">New Laptop</p>
             <div className="flex justify-between items-end mb-2">

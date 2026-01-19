@@ -4,20 +4,6 @@ import useStore from "../store/useStore";
 export default function TransactionList() {
     const { deleteTransaction, transactions } = useStore();
 
-    // const formatDate = (dateStr) => {
-    //     const date = new Date(dateStr);
-    //     const today = new Date();
-    //     const yesterday = new Date();
-    //     yesterday.setDate(today.getDate() - 1);
-
-    //     if (date.toDateString() === today.toDateString()) {
-    //         return "Today";
-    //     } else if (date.toDateString() === yesterday.toDateString()) {
-    //         return "Yesterday";
-    //     }
-    //     return dateStr;
-    // };
-
     return (
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
             <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">

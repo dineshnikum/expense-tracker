@@ -1,8 +1,26 @@
 import { Bell, Search, Menu } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import useStore from "../store/useStore";
 
 export default function Header() {
     const { toggleSidebar } = useStore();
+    const location = useLocation();
+
+    const getTitle = () => {
+        switch (location.pathname) {
+            case "/":
+                return "Dashboard";
+            case "/transactions":
+                return "Transactions";
+            case "/analytics":
+                return "Analytics";
+            case "/settings":
+                return "Settings";
+            default:
+                return "FinTrack";
+        }
+    };
+
     return (
         <header className="bg-white/80 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200 px-8 py-5 flex items-center justify-between">
             <div className="flex items-center gap-4 md:hidden">
@@ -19,7 +37,9 @@ export default function Header() {
             </div>
 
             <div className="hidden md:block">
-                <h2 className="text-2xl font-bold text-slate-800">Dashboard</h2>
+                <h2 className="text-2xl font-bold text-slate-800">
+                    {getTitle()}
+                </h2>
                 <p className="text-slate-500 text-sm">Welcome back, Alex!</p>
             </div>
 

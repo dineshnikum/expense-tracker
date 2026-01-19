@@ -1,21 +1,22 @@
 import {
     LayoutDashboard,
     Receipt,
-    CreditCard,
+    LineChart,
     Settings,
     LogOut,
     X,
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import useStore from "../store/useStore";
 
 export default function Sidebar() {
     const { isSidebarOpen, setSidebarOpen } = useStore();
 
     const menuItems = [
-        { icon: LayoutDashboard, label: "Dashboard", active: true },
-        { icon: Receipt, label: "Transactions", active: false },
-        { icon: CreditCard, label: "Cards", active: false },
-        { icon: Settings, label: "Settings", active: false },
+        { icon: LayoutDashboard, label: "Dashboard", path: "/" },
+        { icon: Receipt, label: "Transactions", path: "/transactions" },
+        { icon: LineChart, label: "Analytics", path: "/analytics" },
+        { icon: Settings, label: "Settings", path: "/settings" },
     ];
 
     return (
@@ -49,29 +50,50 @@ export default function Sidebar() {
 
                 <nav className="flex-1 p-4 space-y-2">
                     {menuItems.map((item, index) => (
-                        <button
+                        <NavLink
                             key={index}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                                item.active
-                                    ? "bg-blue-50 text-blue-600"
-                                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                            }`}
+                            to={item.path}
+                            onClick={() => setSidebarOpen(false)}
+                            className={({ isActive }) =>
+                                `w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
+                                    isActive
+                                        ? "bg-blue-50 text-blue-600"
+                                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                }`
+                            }
                         >
-                            <item.icon
-                                size={20}
-                                className={`${
-                                    item.active
-                                        ? "text-blue-600"
-                                        : "text-slate-400 group-hover:text-slate-600"
-                                }`}
-                            />
-                            <span className="font-medium">{item.label}</span>
-                        </button>
+                            {({ isActive }) => (
+                                <>
+                                    <item.icon
+                                        size={20}
+                                        className={`${
+                                            isActive
+                                                ? "text-blue-600"
+                                                : "text-slate-400 group-hover:text-slate-600"
+                                        }`}
+                                    />
+                                    <span className="font-medium">
+                                        {item.label}
+                                    </span>
+                                </>
+                            )}
+                        </NavLink>
                     ))}
                 </nav>
 
                 <div className="p-4 border-t border-slate-100">
-                    <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors">
+                    <button
+                        onClick={() => {
+                            if (
+                                confirm(
+                                    "Are you sure you want to sign out and clear all data?",
+                                )
+                            ) {
+                                useStore.getState().clearTransactions();
+                            }
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-colors"
+                    >
                         <LogOut size={20} />
                         <span className="font-medium">Sign Out</span>
                     </button>

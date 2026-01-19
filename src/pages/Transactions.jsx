@@ -1,7 +1,10 @@
 import TransactionList from "../components/TransactionList";
 import { Search, Filter } from "lucide-react";
-
+import useStore from "../store/useStore";
 export default function Transactions() {
+    const { transactions } = useStore();
+    const allTransactions = [...transactions].reverse();
+
     return (
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -27,7 +30,7 @@ export default function Transactions() {
                 </div>
             </div>
 
-            <TransactionList />
+            <TransactionList transactions={allTransactions} />
         </div>
     );
 }

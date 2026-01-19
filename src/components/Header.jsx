@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import useStore from "../store/useStore";
 
 export default function Header() {
-    const { toggleSidebar } = useStore();
+    const { toggleSidebar, user } = useStore();
     const location = useLocation();
 
     const getTitle = () => {
@@ -40,7 +40,9 @@ export default function Header() {
                 <h2 className="text-2xl font-bold text-slate-800">
                     {getTitle()}
                 </h2>
-                <p className="text-slate-500 text-sm">Welcome back, Alex!</p>
+                <p className="text-slate-500 text-sm">
+                    Welcome back, {user.name.split(" ")[0]}!
+                </p>
             </div>
 
             <div className="flex items-center gap-4">
@@ -57,7 +59,7 @@ export default function Header() {
                     <span className="absolute top-2 right-2.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
                 </button>
                 <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white font-semibold shadow-lg shadow-blue-200">
-                    A
+                    {user.name?.[0] || "A"}
                 </div>
             </div>
         </header>

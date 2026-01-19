@@ -1,8 +1,39 @@
-import { User, Globe, Bell, Shield, Wallet } from "lucide-react";
+import { User, Globe, CheckCircle2 } from "lucide-react";
+import useStore from "../store/useStore";
+import { useState } from "react";
 
 export default function Settings() {
+    const { user, updateUser, preferences, updatePreferences } = useStore();
+    const [localUser, setLocalUser] = useState(user);
+    const [localPreferences, setLocalPreferences] = useState(preferences);
+    const [isSaved, setIsSaved] = useState(false);
+
+    const handleSave = () => {
+        updateUser(localUser);
+        updatePreferences(localPreferences);
+        setIsSaved(true);
+        setTimeout(() => setIsSaved(false), 3000);
+    };
+
+    const handleDiscard = () => {
+        setLocalUser(user);
+        setLocalPreferences(preferences);
+    };
+
     return (
-        <div className="max-w-4xl space-y-8">
+        <div
+            key={`${user.name}-${user.email}`}
+            className="max-w-4xl space-y-8 pb-12 relative"
+        >
+            {isSaved && (
+                <div className="fixed top-6 right-6 flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-2xl shadow-xl animate-in fade-in slide-in-from-top-4 duration-300 z-50">
+                    <CheckCircle2 size={20} />
+                    <span className="font-semibold">
+                        Settings saved successfully!
+                    </span>
+                </div>
+            )}
+
             <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
                 <div className="p-6 border-b border-slate-100 bg-slate-50/50">
                     <h3 className="font-bold text-slate-900 flex items-center gap-2">
@@ -11,19 +42,6 @@ export default function Settings() {
                     </h3>
                 </div>
                 <div className="p-6 space-y-6">
-                    <div className="flex items-center gap-6">
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
-                            A
-                        </div>
-                        <div>
-                            <button className="px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-700 transition-colors">
-                                Change Avatar
-                            </button>
-                            <p className="text-xs text-slate-500 mt-2">
-                                JPG, GIF or PNG. Max size of 800K
-                            </p>
-                        </div>
-                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-medium text-slate-700 mb-1">
@@ -31,8 +49,14 @@ export default function Settings() {
                             </label>
                             <input
                                 type="text"
-                                defaultValue="Alex Johnson"
                                 className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                                onChange={(e) =>
+                                    setLocalUser({
+                                        ...localUser,
+                                        name: e.target.value,
+                                    })
+                                }
+                                value={localUser.name}
                             />
                         </div>
                         <div>
@@ -41,8 +65,14 @@ export default function Settings() {
                             </label>
                             <input
                                 type="email"
-                                defaultValue="alex@example.com"
                                 className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                                onChange={(e) =>
+                                    setLocalUser({
+                                        ...localUser,
+                                        email: e.target.value,
+                                    })
+                                }
+                                value={localUser.email}
                             />
                         </div>
                     </div>
@@ -62,7 +92,16 @@ export default function Settings() {
                             <label className="block text-sm font-medium text-slate-700 mb-1">
                                 Currency
                             </label>
-                            <select className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all">
+                            <select
+                                onChange={(e) =>
+                                    setLocalPreferences({
+                                        ...localPreferences,
+                                        currency: e.target.value,
+                                    })
+                                }
+                                value={localPreferences.currency}
+                                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                            >
                                 <option>USD ($)</option>
                                 <option>EUR (€)</option>
                                 <option>GBP (£)</option>
@@ -71,12 +110,20 @@ export default function Settings() {
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-slate-700 mb-1">
-                                Language
+                                Theme
                             </label>
-                            <select className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all">
-                                <option>English (US)</option>
-                                <option>Spanish</option>
-                                <option>French</option>
+                            <select
+                                onChange={(e) =>
+                                    setLocalPreferences({
+                                        ...localPreferences,
+                                        theme: e.target.value,
+                                    })
+                                }
+                                value={localPreferences.theme}
+                                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                            >
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
                             </select>
                         </div>
                     </div>
@@ -84,10 +131,16 @@ export default function Settings() {
             </div>
 
             <div className="flex justify-end gap-3">
-                <button className="px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition-colors">
+                <button
+                    onClick={handleDiscard}
+                    className="px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition-colors"
+                >
                     Discard Changes
                 </button>
-                <button className="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+                <button
+                    onClick={handleSave}
+                    className="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+                >
                     Save Settings
                 </button>
             </div>

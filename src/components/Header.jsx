@@ -1,11 +1,13 @@
 import { Bell, Search, Menu } from "lucide-react";
+import useStore from "../store/useStore";
 
-export default function Header({ onMenuClick }) {
+export default function Header() {
+    const { toggleSidebar } = useStore();
     return (
         <header className="bg-white/80 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200 px-8 py-5 flex items-center justify-between">
             <div className="flex items-center gap-4 md:hidden">
                 <button
-                    onClick={onMenuClick}
+                    onClick={() => toggleSidebar()}
                     className="text-slate-600 hover:text-slate-900 border p-1 rounded-lg"
                 >
                     <span className="sr-only">Menu</span>

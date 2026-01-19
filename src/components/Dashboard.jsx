@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Wallet, ArrowUpCircle, ArrowDownCircle } from "lucide-react";
 import Sidebar from "./Sidebar";
 import StatsCard from "./StatsCard";
@@ -7,19 +6,20 @@ import ExpenseForm from "./ExpenseForm";
 import SavingsGoal from "./SavingsGoal";
 import Header from "./Header";
 import ActivityChart from "./ActivityChart";
+import useStore from "../store/useStore";
 
 export default function Dashboard() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { isSidebarOpen, setSidebarOpen } = useStore();
 
     return (
         <div className="min-h-screen bg-slate-50 flex font-sans text-slate-900">
             <Sidebar
                 isOpen={isSidebarOpen}
-                onClose={() => setIsSidebarOpen(false)}
+                onClose={() => setSidebarOpen(false)}
             />
 
             <main className="flex-1 md:ml-64 transition-all duration-300">
-                <Header onMenuClick={() => setIsSidebarOpen(true)} />
+                <Header />
 
                 {/* Dashboard Content */}
                 <div className="p-8 max-w-7xl mx-auto space-y-8">

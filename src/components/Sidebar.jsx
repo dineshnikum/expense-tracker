@@ -6,8 +6,11 @@ import {
     LogOut,
     X,
 } from "lucide-react";
+import useStore from "../store/useStore";
 
-export default function Sidebar({ isOpen, onClose }) {
+export default function Sidebar() {
+    const { isSidebarOpen, setSidebarOpen } = useStore();
+
     const menuItems = [
         { icon: LayoutDashboard, label: "Dashboard", active: true },
         { icon: Receipt, label: "Transactions", active: false },
@@ -18,16 +21,16 @@ export default function Sidebar({ isOpen, onClose }) {
     return (
         <>
             {/* Overlay for mobile */}
-            {isOpen && (
+            {isSidebarOpen && (
                 <div
                     className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
-                    onClick={onClose}
+                    onClick={() => setSidebarOpen(false)}
                 />
             )}
 
             <aside
                 className={`w-64 bg-white border-r border-slate-200 flex flex-col h-screen fixed left-0 top-0 transition-transform duration-300 z-50 ${
-                    isOpen
+                    isSidebarOpen
                         ? "translate-x-0"
                         : "-translate-x-full md:translate-x-0"
                 }`}
@@ -37,7 +40,7 @@ export default function Sidebar({ isOpen, onClose }) {
                         FinTrack
                     </h1>
                     <button
-                        onClick={onClose}
+                        onClick={() => setSidebarOpen(false)}
                         className="md:hidden text-slate-400 hover:text-slate-600"
                     >
                         <X size={20} />

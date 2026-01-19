@@ -1,40 +1,43 @@
-import { ArrowUpRight, ArrowDownLeft } from "lucide-react";
+import { ArrowUpRight, ArrowDownLeft, Trash } from "lucide-react";
+import useStore from "../store/useStore";
+
+const transactions = [
+    {
+        id: 1,
+        title: "Freelance Payment",
+        category: "Income",
+        amount: 1200,
+        type: "income",
+        date: "Today, 2:00 PM",
+    },
+    {
+        id: 2,
+        title: "Grocery Shopping",
+        category: "Food",
+        amount: 85.5,
+        type: "expense",
+        date: "Today, 10:30 AM",
+    },
+    {
+        id: 3,
+        title: "Netflix Subscription",
+        category: "Entertainment",
+        amount: 15.99,
+        type: "expense",
+        date: "Yesterday",
+    },
+    {
+        id: 4,
+        title: "Client Bonus",
+        category: "Income",
+        amount: 300,
+        type: "income",
+        date: "Yesterday",
+    },
+];
 
 export default function TransactionList() {
-    const transactions = [
-        {
-            id: 1,
-            title: "Freelance Payment",
-            category: "Income",
-            amount: 1200,
-            type: "income",
-            date: "Today, 2:00 PM",
-        },
-        {
-            id: 2,
-            title: "Grocery Shopping",
-            category: "Food",
-            amount: 85.5,
-            type: "expense",
-            date: "Today, 10:30 AM",
-        },
-        {
-            id: 3,
-            title: "Netflix Subscription",
-            category: "Entertainment",
-            amount: 15.99,
-            type: "expense",
-            date: "Yesterday",
-        },
-        {
-            id: 4,
-            title: "Client Bonus",
-            category: "Income",
-            amount: 300,
-            type: "income",
-            date: "Yesterday",
-        },
-    ];
+    const { deleteTransaction } = useStore();
 
     return (
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
@@ -76,6 +79,12 @@ export default function TransactionList() {
                         >
                             {tx.type === "income" ? "+" : "-"}$
                             {tx.amount.toFixed(2)}
+                            <button
+                                className="ml-4 cursor-pointer hover:text-red-600"
+                                onClick={() => deleteTransaction(tx.id)}
+                            >
+                                <Trash size={16} />
+                            </button>
                         </span>
                     </div>
                 ))}

@@ -1,9 +1,10 @@
 import { ArrowUpRight, ArrowDownLeft, Trash } from "lucide-react";
-import useStore from "../store/useStore";
+import useStore, { getCurrencySymbol } from "../store/useStore";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function TransactionList({ transactions }) {
-    const { deleteTransaction } = useStore();
+    const { deleteTransaction, preferences } = useStore();
+    const currencySymbol = getCurrencySymbol(preferences.currency);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -53,7 +54,8 @@ export default function TransactionList({ transactions }) {
                         <span
                             className={`font-semibold flex items-center ${tx.type === "income" ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-slate-100"}`}
                         >
-                            {tx.type === "income" ? "+" : "-"}₹{" "}
+                            {tx.type === "income" ? "+" : "-"}
+                            {currencySymbol}
                             {tx.amount.toLocaleString()}
                             <button
                                 className="ml-4 cursor-pointer text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"

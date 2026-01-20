@@ -9,9 +9,9 @@ const useStore = create(
                 email: "nikum@example.com",
             },
             preferences: {
-                currency: "INR (₹)",
+                currency: "USD ($)",
                 language: "English (US)",
-                theme: "light",
+                theme: "dark",
             },
             transactions: [],
             isSidebarOpen: false,
@@ -58,5 +58,10 @@ const useStore = create(
         },
     ),
 );
+
+export const getCurrencySymbol = (currencyStr) => {
+    const match = currencyStr?.match(/\((.*)\)/);
+    return match ? match[1] : "$";
+};
 
 export default useStore;

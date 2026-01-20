@@ -1,13 +1,14 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import useStore from "../store/useStore";
+import useStore, { getCurrencySymbol } from "../store/useStore";
 
 export default function ExpenseForm() {
     const [description, setDescription] = useState("");
     const [amount, setAmount] = useState("");
     const [type, setType] = useState("expense");
     const [category, setCategory] = useState("Food");
-    const { addTransaction } = useStore();
+    const { addTransaction, preferences } = useStore();
+    const currencySymbol = getCurrencySymbol(preferences.currency);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,7 +53,7 @@ export default function ExpenseForm() {
                         </label>
                         <div className="relative">
                             <span className="absolute left-3 top-2.5 text-slate-400 dark:text-slate-500">
-                                $
+                                {currencySymbol}
                             </span>
                             <input
                                 type="number"

@@ -1,9 +1,10 @@
-import useStore from "../store/useStore";
+import useStore, { getCurrencySymbol } from "../store/useStore";
 import { useState } from "react";
 import { Edit2, Check, X, Target, TrendingUp } from "lucide-react";
 
 export default function SavingsGoal() {
-    const { savingGoal, updateSavingGoal } = useStore();
+    const { savingGoal, updateSavingGoal, preferences } = useStore();
+    const currencySymbol = getCurrencySymbol(preferences.currency);
     const [isEditing, setIsEditing] = useState(false);
     const [tempGoal, setTempGoal] = useState({ ...savingGoal });
 
@@ -105,7 +106,7 @@ export default function SavingsGoal() {
                             />
                         ) : (
                             <span className="text-3xl font-bold">
-                                ₹
+                                {currencySymbol}
                                 {Number(
                                     savingGoal.currentAmount,
                                 ).toLocaleString()}
@@ -130,7 +131,7 @@ export default function SavingsGoal() {
                             />
                         ) : (
                             <span className="text-blue-100 font-semibold block text-lg">
-                                ₹
+                                {currencySymbol}
                                 {Number(
                                     savingGoal.targetAmount,
                                 ).toLocaleString()}
@@ -149,7 +150,7 @@ export default function SavingsGoal() {
                             <span>{progress}% completed</span>
                         </div>
                         <span className="text-blue-100">
-                            ₹
+                            {currencySymbol}
                             {Math.max(
                                 0,
                                 savingGoal.targetAmount -

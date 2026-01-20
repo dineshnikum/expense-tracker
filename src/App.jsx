@@ -10,8 +10,7 @@ import AddTransactionModal from "./components/AddTransactionModal";
 
 export default function App() {
     const theme = useStore((state) => state.preferences.theme);
-    const { isTransactionModalOpen, setTransactionModalOpen, transactions } =
-        useStore();
+    const { isTransactionModalOpen, setTransactionModalOpen } = useStore();
 
     useEffect(() => {
         if (theme === "dark") {
@@ -20,8 +19,6 @@ export default function App() {
             document.documentElement.classList.remove("dark");
         }
     }, [theme]);
-
-    console.log(transactions);
 
     return (
         <>

@@ -10,7 +10,6 @@ const useStore = create(
             },
             preferences: {
                 currency: "USD ($)",
-                language: "English (US)",
                 theme: "dark",
             },
             transactions: [],
@@ -21,6 +20,7 @@ const useStore = create(
                 targetAmount: 120000,
                 currentAmount: 0,
             },
+            monthlyBudget: 50000,
 
             updateUser: (user) =>
                 set((state) => ({ user: { ...state.user, ...user } })),
@@ -52,6 +52,7 @@ const useStore = create(
                 set((state) => ({
                     savingGoal: { ...state.savingGoal, ...updates },
                 })),
+            updateMonthlyBudget: (amount) => set({ monthlyBudget: amount }),
         }),
         {
             name: "expense-tracker-storage",

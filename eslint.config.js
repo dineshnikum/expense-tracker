@@ -24,7 +24,7 @@ export default defineConfig([
                 sourceType: "module",
             },
         },
-        settings: { react: { version: "18.3" } },
+        settings: { react: { version: "detect" } },
         rules: {
             "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
             "react/prop-types": "off",

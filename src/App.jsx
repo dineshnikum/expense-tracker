@@ -20,6 +20,13 @@ export default function App() {
         }
     }, [theme]);
 
+    useEffect(() => {
+        const { transactions, loadDemoData } = useStore.getState();
+        if (transactions.length === 0) {
+            loadDemoData();
+        }
+    }, []);
+
     return (
         <>
             <Routes>

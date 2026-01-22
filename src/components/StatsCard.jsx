@@ -16,9 +16,9 @@ export default function StatsCard({ title, amount, icon: Icon, trend, color }) {
                 <div className={`p-3 rounded-xl ${colorStyles[color]}`}>
                     <Icon size={24} />
                 </div>
-                {trend && (
+                {trend !== undefined && (
                     <span
-                        className={`text-sm font-medium ${trend > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"} flex items-center gap-1`}
+                        className={`text-sm font-medium ${trend > 0 ? "text-emerald-600 dark:text-emerald-400" : trend < 0 ? "text-rose-600 dark:text-rose-400" : "text-slate-500 dark:text-slate-400"} flex items-center gap-1`}
                     >
                         {trend > 0 ? "+" : ""}
                         {trend}%

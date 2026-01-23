@@ -212,7 +212,7 @@ const useStore = create(
             },
             preferences: {
                 currency: "USD ($)",
-                theme: "light",
+                theme: "dark",
             },
             transactions: [],
             isSidebarOpen: false,

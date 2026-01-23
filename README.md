@@ -3,7 +3,6 @@
 A modern, comprehensive financial management dashboard designed to help you track expenses, manage budgets, and visualize your financial health with style.
 
 ![Expense Tracker Dashboard](./public/dashboard-preview.png)
-_(Note: Add a screenshot of your dashboard here)_
 
 ## 🚀 Features
 

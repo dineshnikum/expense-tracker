@@ -24,13 +24,12 @@ export default function CategoryPieChart() {
         const data = Object.values(categories);
 
         const colors = [
-            "#3b82f6", // blue
-            "#6366f1", // indigo
-            "#f43f5e", // rose
-            "#f59e0b", // amber
-            "#10b981", // emerald
-            "#8b5cf6", // violet
-            "#ec4899", // pink
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#4BC0C0",
+            "#9966FF",
+            "#FF9F40",
         ];
 
         return {

@@ -89,10 +89,11 @@ export default function ExpenseForm() {
                         onChange={(e) => setCategory(e.target.value)}
                     >
                         <option>Food</option>
+                        <option>Housing</option>
                         <option>Transport</option>
                         <option>Entertainment</option>
-                        <option>Bills</option>
-                        <option>Other</option>
+                        <option>Shopping</option>
+                        <option>Income</option>
                     </select>
                 </div>
 

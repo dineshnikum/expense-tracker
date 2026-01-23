@@ -118,11 +118,11 @@ export default function AddTransactionModal({ isOpen, onClose }) {
                             onChange={(e) => setCategory(e.target.value)}
                         >
                             <option>Food</option>
+                            <option>Housing</option>
                             <option>Transport</option>
                             <option>Entertainment</option>
-                            <option>Bills</option>
                             <option>Shopping</option>
-                            <option>Investment</option>
+                            <option>Income</option>
                             <option>Other</option>
                         </select>
                     </div>
